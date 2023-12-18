@@ -9,7 +9,14 @@ const InitialPassengerDetails = {
     dest :""
 }
 
+// let cars = ["volvo",,"saab","mercedes","audi"]
 const PassengerCheckin = () => {
+    const Stations = ['Book','Mobile','Electrical','Furniture','Cloth','Home Decor'];
+
+        console.log(Stations)
+        let newStations = Stations;
+        newStations.shift()
+        console.log(newStations)
     const [PassengerDetail,SetPassengerDetail] = useState(InitialPassengerDetails);
     const HandleChange = (e) => {
         const { name, value } = e.target;
@@ -18,11 +25,23 @@ const PassengerCheckin = () => {
           [name]: value,
         });
       };
+
 const Handleformcreation =(e) =>{
     e.preventDefault();
 
     console.log(PassengerDetail)
     
+}
+const HandleSelection =(e) =>{
+    let selected = e.target.selectedIndex;
+
+        if(selected <= 0){
+            alert(selected)
+        }
+        else{
+            alert(selected)
+        }
+
 }
     return(
         <div>
@@ -43,10 +62,24 @@ const Handleformcreation =(e) =>{
                     <input id="coach" name="coach" type='text' value = {PassengerDetail.coach} placeholder='Type your coach heres' onChange={HandleChange}></input>  
                     <br></br>
                     <label for="start">Please Select your start location </label>
-                    <input id="start" name="start" type='text' value = {PassengerDetail.start} placeholder='Type your start location' onChange={HandleChange}></input> 
+                    
+                    <br></br><select name="cars" id="cars" onChange={HandleSelection}>
+                    {
+                    Stations.map((cat,idx)=>(
+                        <option key={idx} value={cat}>{cat}</option>
+                    ))
+                }
+                    </select>
                     <br></br>
                     <label for="dest">Please Select your destination location </label>
-                    <input id="dest" name="dest" type='text' value = {PassengerDetail.dest} placeholder='Type your destination location' onChange={HandleChange}></input>
+                    <select name="cars" id="cars" onChange={HandleSelection}>
+                    {
+                    Stations.map((cat,idx)=>(
+                        <option key={idx} value={cat}>{cat}</option>
+                    ))
+                }
+                    </select>
+                    
                     <br></br>
                     <button onClick={Handleformcreation}>Submit</button>            
 
